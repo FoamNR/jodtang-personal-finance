@@ -14,6 +14,7 @@ import 'ui/features/dashboard/views/dashboard_view.dart';
 import 'ui/features/security/views/pin_screen.dart';
 import 'ui/features/settings/view_models/settings_view_model.dart';
 import 'ui/features/settings/views/settings_view.dart';
+import 'ui/features/splash/views/splash_screen.dart';
 import 'package:flutter/services.dart';
 import 'ui/features/transactions/view_models/transaction_view_model.dart';
 import 'ui/features/transactions/views/add_edit_transaction_view.dart';
@@ -51,13 +52,14 @@ class JodTangApp extends StatefulWidget {
 class _JodTangAppState extends State<JodTangApp> with WidgetsBindingObserver {
   final SecurityService _securityService = SecurityService();
   bool _isLocked = true;
-  bool _hasCheckedLock = false;
+  bool _splashCompleted = false;
+  late final Future<void> _initFuture;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    _checkInitialLock();
+    _initFuture = _checkInitialLock();
   }
 
   @override
@@ -71,7 +73,6 @@ class _JodTangAppState extends State<JodTangApp> with WidgetsBindingObserver {
     if (mounted) {
       setState(() {
         _isLocked = pinEnabled;
-        _hasCheckedLock = true;
       });
     }
   }
@@ -98,6 +99,12 @@ class _JodTangAppState extends State<JodTangApp> with WidgetsBindingObserver {
     });
   }
 
+  void _onSplashFinished() {
+    setState(() {
+      _splashCompleted = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -119,14 +126,26 @@ class _JodTangAppState extends State<JodTangApp> with WidgetsBindingObserver {
               ],
             );
           },
-          home: !_hasCheckedLock
-              ? const Scaffold(body: Center(child: CircularProgressIndicator()))
-              : _isLocked
-                  ? PinScreen(
-                      mode: PinScreenMode.unlock,
-                      onPinVerifiedOrCreated: (_) => _onUnlocked(),
-                    )
-                  : const MainNavigationShell(),
+          home: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 450),
+            switchInCurve: Curves.easeOutCubic,
+            switchOutCurve: Curves.easeInCubic,
+            child: !_splashCompleted
+                ? SplashScreen(
+                    key: const ValueKey('splash_screen'),
+                    initialTasks: _initFuture,
+                    onFinished: _onSplashFinished,
+                  )
+                : _isLocked
+                    ? PinScreen(
+                        key: const ValueKey('pin_screen'),
+                        mode: PinScreenMode.unlock,
+                        onPinVerifiedOrCreated: (_) => _onUnlocked(),
+                      )
+                    : const MainNavigationShell(
+                        key: ValueKey('main_navigation_shell'),
+                      ),
+          ),
         );
       },
     );
