@@ -269,13 +269,30 @@ class _AddEditRecurringViewState extends State<AddEditRecurringView> {
                       children: _categories.where((c) => c.type == CategoryType.expense).map((c) {
                         final isSelected = _selectedCategoryId == c.id;
                         final color = Color(c.colorValue);
+                        final isDark = Theme.of(context).brightness == Brightness.dark;
 
                         return ChoiceChip(
                           avatar: Icon(IconHelper.getIconData(c.iconCodePoint), size: 16, color: isSelected ? Colors.white : color),
                           label: Text(c.name),
                           selected: isSelected,
                           selectedColor: color,
-                          labelStyle: TextStyle(color: isSelected ? Colors.white : Colors.black87),
+                          backgroundColor: isDark
+                              ? const Color(0xFF1E293B).withValues(alpha: 0.75)
+                              : Colors.white.withValues(alpha: 0.75),
+                          side: BorderSide(
+                            color: isSelected
+                                ? Colors.transparent
+                                : (isDark
+                                    ? Colors.white.withValues(alpha: 0.18)
+                                    : Colors.black.withValues(alpha: 0.08)),
+                            width: 1.0,
+                          ),
+                          labelStyle: TextStyle(
+                            color: isSelected
+                                ? Colors.white
+                                : (isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight),
+                            fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                          ),
                           onSelected: (selected) {
                             if (selected) setState(() => _selectedCategoryId = c.id);
                           },

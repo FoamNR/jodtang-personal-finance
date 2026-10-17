@@ -237,6 +237,8 @@ class DashboardView extends StatelessWidget {
   }
 
   Widget _buildIncomeExpenseRow(BuildContext context, double income, double expense) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Row(
       children: [
         // Income Card
@@ -257,9 +259,12 @@ class DashboardView extends StatelessWidget {
                       child: const Icon(Icons.arrow_downward, size: 16, color: AppColors.income),
                     ),
                     const SizedBox(width: 8),
-                    const Text(
+                    Text(
                       'รายรับเดือนนี้',
-                      style: TextStyle(fontSize: 13, color: AppColors.textSecondaryLight),
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                      ),
                     ),
                   ],
                 ),
@@ -296,9 +301,12 @@ class DashboardView extends StatelessWidget {
                       child: const Icon(Icons.arrow_upward, size: 16, color: AppColors.expense),
                     ),
                     const SizedBox(width: 8),
-                    const Text(
+                    Text(
                       'รายจ่ายเดือนนี้',
-                      style: TextStyle(fontSize: 13, color: AppColors.textSecondaryLight),
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                      ),
                     ),
                   ],
                 ),
@@ -353,6 +361,7 @@ class DashboardView extends StatelessWidget {
   }
 
   Widget _buildTransactionTile(BuildContext context, TransactionItem tx) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     Color typeColor;
     String prefix;
 
@@ -405,7 +414,10 @@ class DashboardView extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   '${tx.walletName ?? ""} • ${ThaiFormatters.formatThaiDate(tx.date, includeTime: true)}',
-                  style: const TextStyle(fontSize: 12, color: AppColors.textSecondaryLight),
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                  ),
                 ),
                 if (tx.note != null && tx.note!.isNotEmpty) ...[
                   const SizedBox(height: 2),
@@ -413,7 +425,11 @@ class DashboardView extends StatelessWidget {
                     tx.note!,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 12, fontStyle: FontStyle.italic, color: Colors.grey),
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontStyle: FontStyle.italic,
+                      color: isDark ? AppColors.textSecondaryDark : Colors.grey,
+                    ),
                   ),
                 ],
               ],

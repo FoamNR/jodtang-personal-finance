@@ -72,6 +72,7 @@ class RecurringListView extends StatelessWidget {
   }
 
   Widget _buildRuleCard(BuildContext context, RecurringRule rule) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final color = rule.categoryColor != null ? Color(rule.categoryColor!) : AppColors.primary;
 
     return CustomCard(
@@ -106,7 +107,10 @@ class RecurringListView extends StatelessWidget {
                     const SizedBox(height: 2),
                     Text(
                       '${rule.frequency.labelTh} • ${rule.walletName ?? "กระเป๋า"}',
-                      style: const TextStyle(fontSize: 12, color: AppColors.textSecondaryLight),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                      ),
                     ),
                   ],
                 ),
@@ -125,7 +129,13 @@ class RecurringListView extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('กำหนดรอบถัดไป', style: TextStyle(fontSize: 11, color: Colors.grey)),
+                  Text(
+                    'กำหนดรอบถัดไป',
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: isDark ? AppColors.textSecondaryDark : Colors.grey,
+                    ),
+                  ),
                   const SizedBox(height: 2),
                   Text(
                     ThaiFormatters.formatThaiDate(rule.nextDueDate),

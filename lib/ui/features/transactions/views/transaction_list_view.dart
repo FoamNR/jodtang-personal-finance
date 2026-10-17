@@ -363,6 +363,7 @@ class TransactionListView extends StatelessWidget {
   }
 
   Widget _buildTransactionCard(BuildContext context, TransactionItem tx) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     Color typeColor;
     String prefix;
 
@@ -470,9 +471,9 @@ class TransactionListView extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text(
                     '${tx.walletName ?? ""} • ${ThaiFormatters.formatThaiDate(tx.date, includeTime: true)}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
-                      color: AppColors.textSecondaryLight,
+                      color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
                     ),
                   ),
                   if (tx.note != null && tx.note!.isNotEmpty) ...[
@@ -481,10 +482,10 @@ class TransactionListView extends StatelessWidget {
                       tx.note!,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 12,
                         fontStyle: FontStyle.italic,
-                        color: Colors.grey,
+                        color: isDark ? AppColors.textSecondaryDark : Colors.grey,
                       ),
                     ),
                   ],

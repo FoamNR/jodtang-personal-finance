@@ -336,9 +336,14 @@ class SettingsView extends StatelessWidget {
                             const SizedBox(height: 8),
                             const Text('จดตัง (Jod Tang)', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                             const SizedBox(height: 2),
-                            const Text(
+                            Text(
                               'เวอร์ชัน 1.0.0 • บันทึกบัญชี Offline 100%',
-                              style: TextStyle(color: Colors.grey, fontSize: 12),
+                              style: TextStyle(
+                                color: Theme.of(context).brightness == Brightness.dark
+                                    ? AppColors.textSecondaryDark
+                                    : Colors.grey,
+                                fontSize: 12,
+                              ),
                             ),
                           ],
                         ),
@@ -353,6 +358,7 @@ class SettingsView extends StatelessWidget {
   }
 
   Widget _buildSectionHeader(BuildContext context, String title) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Padding(
       padding: const EdgeInsets.only(left: 4, bottom: 8),
       child: Text(
@@ -360,7 +366,7 @@ class SettingsView extends StatelessWidget {
         style: TextStyle(
           fontSize: 13,
           fontWeight: FontWeight.bold,
-          color: Colors.grey.shade600,
+          color: isDark ? AppColors.textSecondaryDark : Colors.grey.shade600,
         ),
       ),
     );

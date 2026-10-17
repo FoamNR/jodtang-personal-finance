@@ -19,6 +19,7 @@ class AnalyticsView extends StatelessWidget {
     return ListenableBuilder(
       listenable: viewModel,
       builder: (context, _) {
+        final isDark = Theme.of(context).brightness == Brightness.dark;
         final summary = viewModel.summary;
         final expenses = summary.topCategoryExpenses;
 
@@ -80,9 +81,12 @@ class AnalyticsView extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
+                            Text(
                               'เงินออมสุทธิประจำเดือน',
-                              style: TextStyle(fontSize: 14, color: AppColors.textSecondaryLight),
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                              ),
                             ),
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -120,7 +124,13 @@ class AnalyticsView extends StatelessWidget {
                           children: [
                             Column(
                               children: [
-                                const Text('รายรับรวม', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                                Text(
+                                  'รายรับรวม',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: isDark ? AppColors.textSecondaryDark : Colors.grey.shade600,
+                                  ),
+                                ),
                                 const SizedBox(height: 4),
                                 Text(
                                   ThaiFormatters.formatCurrency(summary.totalIncome),
@@ -128,10 +138,20 @@ class AnalyticsView extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Container(height: 24, width: 1, color: Colors.grey.shade300),
+                            Container(
+                              height: 24,
+                              width: 1,
+                              color: isDark ? Colors.white.withValues(alpha: 0.15) : Colors.grey.shade300,
+                            ),
                             Column(
                               children: [
-                                const Text('รายจ่ายรวม', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                                Text(
+                                  'รายจ่ายรวม',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: isDark ? AppColors.textSecondaryDark : Colors.grey.shade600,
+                                  ),
+                                ),
                                 const SizedBox(height: 4),
                                 Text(
                                   ThaiFormatters.formatCurrency(summary.totalExpense),
@@ -242,7 +262,10 @@ class AnalyticsView extends StatelessWidget {
                                       const SizedBox(height: 2),
                                       Text(
                                         'สัดส่วน ${cat.percentage.toStringAsFixed(1)}%',
-                                        style: const TextStyle(fontSize: 11, color: AppColors.textSecondaryLight),
+                                        style: TextStyle(
+                                          fontSize: 11,
+                                          color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -264,7 +287,9 @@ class AnalyticsView extends StatelessWidget {
                               child: LinearProgressIndicator(
                                 value: cat.percentage / 100,
                                 minHeight: 6,
-                                backgroundColor: Colors.grey.shade200,
+                                backgroundColor: isDark
+                                    ? Colors.white.withValues(alpha: 0.1)
+                                    : Colors.grey.shade200,
                                 valueColor: AlwaysStoppedAnimation<Color>(catColor),
                               ),
                             ),

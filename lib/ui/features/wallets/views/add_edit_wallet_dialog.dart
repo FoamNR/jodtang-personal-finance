@@ -37,6 +37,7 @@ class _AddEditWalletDialogState extends State<AddEditWalletDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEditing = widget.walletToEdit != null;
 
     return AlertDialog(
@@ -90,7 +91,7 @@ class _AddEditWalletDialogState extends State<AddEditWalletDialog> {
                       decoration: BoxDecoration(
                         color: color,
                         shape: BoxShape.circle,
-                        border: isSelected ? Border.all(color: Colors.black, width: 2.5) : null,
+                        border: isSelected ? Border.all(color: isDark ? Colors.white : Colors.black, width: 2.5) : null,
                       ),
                       child: isSelected ? const Icon(Icons.check, size: 18, color: Colors.white) : null,
                     ),
@@ -117,11 +118,19 @@ class _AddEditWalletDialogState extends State<AddEditWalletDialog> {
                       onTap: () => setState(() => _selectedIcon = icon.codePoint),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: isSelected ? Color(_selectedColor).withOpacity(0.2) : Colors.grey.withOpacity(0.1),
+                          color: isSelected
+                              ? Color(_selectedColor).withValues(alpha: 0.2)
+                              : (isDark ? Colors.white.withValues(alpha: 0.08) : Colors.grey.withValues(alpha: 0.1)),
                           borderRadius: BorderRadius.circular(8),
                           border: isSelected ? Border.all(color: Color(_selectedColor), width: 2) : null,
                         ),
-                        child: Icon(icon, color: isSelected ? Color(_selectedColor) : Colors.grey.shade700, size: 22),
+                        child: Icon(
+                          icon,
+                          color: isSelected
+                              ? Color(_selectedColor)
+                              : (isDark ? AppColors.textSecondaryDark : Colors.grey.shade700),
+                          size: 22,
+                        ),
                       ),
                     );
                   },

@@ -446,7 +446,11 @@ class _AddEditTransactionViewState extends State<AddEditTransactionView> {
           child: Text(
             title,
             style: TextStyle(
-              color: isSelected ? Colors.white : Colors.grey.shade700,
+              color: isSelected
+                  ? Colors.white
+                  : (Theme.of(context).brightness == Brightness.dark
+                      ? AppColors.textSecondaryDark
+                      : Colors.grey.shade700),
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
             ),
           ),
@@ -482,9 +486,14 @@ class _AddEditTransactionViewState extends State<AddEditTransactionView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'จำนวนเงิน (บาท)',
-                  style: TextStyle(fontSize: 13, color: AppColors.textSecondaryLight),
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? AppColors.textSecondaryDark
+                        : AppColors.textSecondaryLight,
+                  ),
                 ),
                 if (availableForTransfer != null)
                   Text(
@@ -732,15 +741,20 @@ class _AddEditTransactionViewState extends State<AddEditTransactionView> {
   }
 
   Widget _buildCategoryPicker() {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final catType = _selectedType == TransactionType.expense ? CategoryType.expense : CategoryType.income;
     final relevantCategories = _categories.where((c) => c.type == catType).toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'หมวดหมู่',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+            color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
+          ),
         ),
         const SizedBox(height: 8),
         Wrap(
@@ -759,9 +773,22 @@ class _AddEditTransactionViewState extends State<AddEditTransactionView> {
               label: Text(c.name),
               selected: isSelected,
               selectedColor: catColor,
+              backgroundColor: isDark
+                  ? const Color(0xFF1E293B).withValues(alpha: 0.75)
+                  : Colors.white.withValues(alpha: 0.75),
+              side: BorderSide(
+                color: isSelected
+                    ? Colors.transparent
+                    : (isDark
+                        ? Colors.white.withValues(alpha: 0.18)
+                        : Colors.black.withValues(alpha: 0.08)),
+                width: 1.0,
+              ),
               labelStyle: TextStyle(
-                color: isSelected ? Colors.white : Colors.black87,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                color: isSelected
+                    ? Colors.white
+                    : (isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight),
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
               ),
               onSelected: (selected) {
                 if (selected) {

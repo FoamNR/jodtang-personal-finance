@@ -103,6 +103,7 @@ class WalletListView extends StatelessWidget {
   }
 
   Widget _buildWalletItem(BuildContext context, Wallet wallet) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final color = Color(wallet.colorValue);
 
     return CustomCard(
@@ -134,7 +135,10 @@ class WalletListView extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   'ตั้งต้น: ${ThaiFormatters.formatCurrency(wallet.initialBalance)}',
-                  style: const TextStyle(fontSize: 12, color: AppColors.textSecondaryLight),
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                  ),
                 ),
               ],
             ),
@@ -147,7 +151,9 @@ class WalletListView extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
-                  color: wallet.currentBalance >= 0 ? AppColors.textPrimaryLight : AppColors.expense,
+                  color: wallet.currentBalance >= 0
+                      ? (isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight)
+                      : AppColors.expense,
                 ),
               ),
               const SizedBox(height: 4),

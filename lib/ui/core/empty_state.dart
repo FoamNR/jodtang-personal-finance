@@ -18,6 +18,7 @@ class EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 48),
@@ -50,7 +51,7 @@ class EmptyState extends StatelessWidget {
                 subtitle!,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.textSecondaryLight,
+                      color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
                     ),
               ),
             ],

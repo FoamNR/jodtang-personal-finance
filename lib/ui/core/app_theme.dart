@@ -76,6 +76,35 @@ class AppTheme {
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       ),
+      chipTheme: ChipThemeData(
+        backgroundColor: Colors.white.withValues(alpha: 0.75),
+        disabledColor: Colors.black12,
+        selectedColor: AppColors.primary,
+        secondarySelectedColor: AppColors.primary,
+        labelStyle: const TextStyle(
+          color: AppColors.textPrimaryLight,
+          fontWeight: FontWeight.w500,
+        ),
+        secondaryLabelStyle: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+        brightness: Brightness.light,
+        side: BorderSide(color: Colors.black.withValues(alpha: 0.08)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
+      dialogTheme: DialogThemeData(
+        backgroundColor: AppColors.surfaceLight,
+        titleTextStyle: const TextStyle(
+          color: AppColors.textPrimaryLight,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+        contentTextStyle: const TextStyle(
+          color: AppColors.textPrimaryLight,
+          fontSize: 14,
+        ),
+      ),
     );
   }
 
@@ -151,6 +180,35 @@ class AppTheme {
           borderSide: const BorderSide(color: AppColors.primary, width: 2),
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      ),
+      chipTheme: ChipThemeData(
+        backgroundColor: const Color(0xFF1E293B).withValues(alpha: 0.75),
+        disabledColor: Colors.white12,
+        selectedColor: AppColors.primary,
+        secondarySelectedColor: AppColors.primary,
+        labelStyle: const TextStyle(
+          color: AppColors.textPrimaryDark,
+          fontWeight: FontWeight.w500,
+        ),
+        secondaryLabelStyle: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+        brightness: Brightness.dark,
+        side: BorderSide(color: Colors.white.withValues(alpha: 0.18)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
+      dialogTheme: DialogThemeData(
+        backgroundColor: AppColors.surfaceDark,
+        titleTextStyle: const TextStyle(
+          color: AppColors.textPrimaryDark,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+        contentTextStyle: const TextStyle(
+          color: AppColors.textPrimaryDark,
+          fontSize: 14,
+        ),
       ),
     );
   }

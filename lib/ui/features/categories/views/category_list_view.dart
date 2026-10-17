@@ -114,9 +114,14 @@ class _CategoryListViewState extends State<CategoryListView> with SingleTickerPr
                       style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                     if (cat.isDefault)
-                      const Text(
+                      Text(
                         'ค่าเริ่มต้นระบบ',
-                        style: TextStyle(fontSize: 11, color: Colors.grey),
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? AppColors.textSecondaryDark
+                              : Colors.grey,
+                        ),
                       ),
                   ],
                 ),
