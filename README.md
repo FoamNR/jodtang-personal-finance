@@ -6,6 +6,8 @@ A clean, 100% offline personal finance and expense tracker built with Flutter an
 
 ## ✨ Features
 
+- **🌊 Animated Splash Screen:** Staggered elastic entrance, glowing breathing ripples, liquid progress bar with shimmer, and silky transition.
+- **🌗 Adaptive Dark Mode & Liquid Glass UI:** Frosted glassmorphism design with high-contrast Dark Mode typography across all chips, cards, and dialogs.
 - **🔒 100% Offline & Private:** All data is stored locally in SQLite on your device. No cloud sync, no tracking.
 - **💸 Transaction Tracking:** Record Income, Expense, and Transfers with real-time balance validation to prevent overdrafts.
 - **🧾 Receipt & Slip Attachment:** Attach receipt photos, compress them locally, and preview in full-screen.
@@ -16,7 +18,6 @@ A clean, 100% offline personal finance and expense tracker built with Flutter an
 - **📦 Backup & Export:**
   - Export transactions to CSV (UTF-8 BOM, compatible with Excel).
   - 1-Click Full Backup & Restore via `.zip` (database + receipt photos).
-- **🌗 Dark Mode:** Seamless toggle between Light and Dark themes.
 
 ---
 

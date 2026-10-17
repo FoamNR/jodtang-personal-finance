@@ -9,12 +9,13 @@
 
 | ลำดับ | หัวข้อฟีเจอร์ | รายละเอียดสังเขป | ลิงก์เอกสาร |
 | :---: | :--- | :--- | :---: |
-| **01** | **ระบบบันทึกธุรกรรม**<br>*(Transaction Management)* | บันทึกรายรับ รายจ่าย โอนเงินพร้อมระบบ Balance Validation ป้องกันเงินติดลบ แนบสลิป/ใบเสร็จ ค้นหาและกรอง | [อ่านรายละเอียด ➔](file:///d:/fluttle-project/jod_tang/docs/feature/01_transaction_management/README.md) |
-| **02** | **ระบบรายการประจำอัตโนมัติ**<br>*(Recurring Transactions)* | ตั้งบิลรายเดือน/สัปดาห์/ปี ตรวจสอบ `next_due_date` ตอนเปิดแอป บันทึกอัตโนมัติและแจ้งเตือน | [อ่านรายละเอียด ➔](file:///d:/fluttle-project/jod_tang/docs/feature/02_recurring_transactions/README.md) |
-| **03** | **ระบบกระเป๋าเงินและหมวดหมู่**<br>*(Wallets & Categories)* | จัดการหลายกระเป๋าเงิน คำนวณยอดเงินคงเหลือ Real-time ปรับแต่งชื่อ สี และไอคอนหมวดหมู่ | [อ่านรายละเอียด ➔](file:///d:/fluttle-project/jod_tang/docs/feature/03_wallets_and_categories/README.md) |
-| **04** | **แดชบอร์ดและรายงานสรุปผล**<br>*(Analytics & Reports)* | สรุปยอดรายรับ-รายจ่ายสุทธิ พร้อมโลโก้จดตัง กราฟ Donut Chart เปรียบเทียบสัดส่วนค่าใช้จ่าย | [อ่านรายละเอียด ➔](file:///d:/fluttle-project/jod_tang/docs/feature/04_analytics_and_reports/README.md) |
-| **05** | **ระบบความปลอดภัยและล็อกแอป**<br>*(Security & App Lock)* | ล็อกแอปด้วยรหัส PIN 4 หลัก แป้นพิมพ์ตอบสนองไว ปลอดภัยด้วย SHA-256 ล็อกอัตโนมัติเมื่อสลับแอป | [อ่านรายละเอียด ➔](file:///d:/fluttle-project/jod_tang/docs/feature/05_security_and_app_lock/README.md) |
-| **06** | **ระบบส่งออกและสำรองข้อมูล**<br>*(Backup & Export)* | ส่งออกไฟล์ CSV รองรับภาษาไทย (UTF-8 BOM) สำรองและกู้คืนไฟล์ .ZIP ก้อนเดียวรวม .db + รูปสลิป | [อ่านรายละเอียด ➔](file:///d:/fluttle-project/jod_tang/docs/feature/06_backup_and_export/README.md) |
+| **01** | **ระบบบันทึกธุรกรรม**<br>*(Transaction Management)* | บันทึกรายรับ รายจ่าย โอนเงินพร้อมระบบ Balance Validation ป้องกันเงินติดลบ แนบสลิป/ใบเสร็จ ค้นหาและกรอง | [อ่านรายละเอียด ➔](./01_transaction_management/README.md) |
+| **02** | **ระบบรายการประจำอัตโนมัติ**<br>*(Recurring Transactions)* | ตั้งบิลรายเดือน/สัปดาห์/ปี ตรวจสอบ `next_due_date` ตอนเปิดแอป บันทึกอัตโนมัติและแจ้งเตือน | [อ่านรายละเอียด ➔](./02_recurring_transactions/README.md) |
+| **03** | **ระบบกระเป๋าเงินและหมวดหมู่**<br>*(Wallets & Categories)* | จัดการหลายกระเป๋าเงิน คำนวณยอดเงินคงเหลือ Real-time ปรับแต่งชื่อ สี และไอคอนหมวดหมู่ | [อ่านรายละเอียด ➔](./03_wallets_and_categories/README.md) |
+| **04** | **แดชบอร์ดและรายงานสรุปผล**<br>*(Analytics & Reports)* | สรุปยอดรายรับ-รายจ่ายสุทธิ พร้อมโลโก้จดตัง กราฟ Donut Chart เปรียบเทียบสัดส่วนค่าใช้จ่าย | [อ่านรายละเอียด ➔](./04_analytics_and_reports/README.md) |
+| **05** | **ระบบความปลอดภัยและล็อกแอป**<br>*(Security & App Lock)* | ล็อกแอปด้วยรหัส PIN 4 หลัก แป้นพิมพ์ตอบสนองไว ปลอดภัยด้วย SHA-256 ล็อกอัตโนมัติเมื่อสลับแอป | [อ่านรายละเอียด ➔](./05_security_and_app_lock/README.md) |
+| **06** | **ระบบส่งออกและสำรองข้อมูล**<br>*(Backup & Export)* | ส่งออกไฟล์ CSV รองรับภาษาไทย (UTF-8 BOM) สำรองและกู้คืนไฟล์ .ZIP ก้อนเดียวรวม .db + รูปสลิป | [อ่านรายละเอียด ➔](./06_backup_and_export/README.md) |
+| **07** | **แอนิเมชันเปิดแอปและระบบธีม**<br>*(Splash & Theme)* | หน้าจอ Splash แอนิเมชัน Liquid Glass โหลด 0-100% พร้อมการปรับจูนคอนทราสต์ Dark Mode ให้อ่านง่าย | [อ่านรายละเอียด ➔](./07_splash_and_theme/README.md) |
 
 ---
 
@@ -31,6 +32,7 @@ lib/
 └── ui/
     ├── core/                  # AppColors, AppTheme, ThemeController (Light/Dark Mode), ThaiFormatters, CustomCard, EmptyState, IconHelper
     └── features/
+        ├── splash/            # แอนิเมชันเปิดแอป (Liquid Glass Animated Splash & Loading Screen)
         ├── dashboard/         # หน้าแรก สรุปยอดเงินพร้อมโลโก้จดตัง และทางลัด
         ├── transactions/      # ประวัติรายการ ค้นหา กรอง และฟอร์มบันทึก/โอนเงินแนบสลิป
         ├── wallets/           # จัดการกระเป๋าเงินและยอดตั้งต้น
